@@ -1,10 +1,4 @@
 import asyncio
-import sys
-import os
-
-# Ensure the rakutenai_py package is in the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from rakutenai_py import User
 
 async def main():
