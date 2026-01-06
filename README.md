@@ -138,3 +138,6 @@ To set up a development environment:
 1.  Clone the repository.
 2.  Install dependencies: `uv pip install -e .`
 3.  Run tests: `pytest`
+
+## Credits
+This project is a **Python port** of [rakutenai](https://github.com/evex-dev/rakutenai/tree/main), originally developed in TypeScript. Special thanks to the original authors and all contributors for their great work.
