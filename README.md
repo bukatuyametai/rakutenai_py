@@ -17,13 +17,13 @@
 You can install `rakutenai_py` using `pip`:
 
 ```bash
-pip install rakutenai_py
+pip install git+https://github.com/bukatuyametai/rakutenai_py.git
 ```
 
 It is recommended to use `uv` for dependency management for a faster and more reliable experience:
 
 ```bash
-uv pip install rakutenai_py
+uv pip install git+https://github.com/bukatuyametai/rakutenai_py.git
 ```
 
 ## Usage
