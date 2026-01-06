@@ -1,10 +1,15 @@
-import asyncio
-import json
-import uuid
-from dataclasses import dataclass
-from typing import Any, AsyncGenerator, Dict, List, Literal, Optional, Union, IO
-import websockets
 import time
+from dataclasses import dataclass
+import uuid
+import json
+from typing import Any, AsyncGenerator, Dict, List, Literal, IO
+
+# --- Updated Imports for websockets 14.0+ ---
+import websockets.asyncio.client
+from websockets.asyncio.client import ClientConnection
+import websockets.exceptions
+import websockets.protocol
+# --------------------------------------------
 
 from . import core
 
@@ -17,16 +22,19 @@ class UploadedFile:
     is_image: bool
 
 class Thread:
-    def __init__(self, id: str, user: "User", ws: websockets.WebSocketClientProtocol):
+    # Updated type hint: ClientConnection
+    def __init__(self, id: str, user: "User", ws: ClientConnection):
         self.id = id
         self._user = user
         self._ws = ws
 
     @classmethod
-    async def _connect_ws(cls, user: "User") -> websockets.WebSocketClientProtocol:
+    # Updated return type hint: ClientConnection
+    async def _connect_ws(cls, user: "User") -> ClientConnection:
         ws_path = f"/ws/v1/chat?deviceId={user.device_id}"
         url = await core.get_signed_ws_url(ws_path, user.access_token)
-        return await websockets.connect(url)
+        # Use the new asyncio connect method
+        return await websockets.asyncio.client.connect(url)
 
     @classmethod
     async def connect(cls, id: str, user: "User") -> "Thread":
@@ -156,7 +164,7 @@ class Thread:
 
     async def close(self):
         """Closes the WebSocket connection."""
-        if not self._ws.closed:
+        if self._ws.state != websockets.protocol.State.CLOSED:
             await self._ws.close()
 
     async def __aenter__(self):

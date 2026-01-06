@@ -1,12 +1,11 @@
-import asyncio
 import base64
 import hashlib
 import hmac
 import json
 import time
 import uuid
-from typing import Any, Dict, List, Optional
-from urllib.parse import urlencode, urlparse, urlunparse
+from typing import Any, Dict, Optional
+from urllib.parse import urlencode, urlparse, urlunparse, parse_qs
 
 import httpx
 
@@ -94,10 +93,15 @@ async def get_signed_ws_url(path: str, access_token: str) -> str:
 
     parsed_url = urlparse(f"{WS_BASE_URL}{path}")
     
-    query_params = {
+    # Preserve original query parameters
+    query_params = parse_qs(parsed_url.query)
+    # parse_qs returns lists, so we need to flatten them
+    query_params = {k: v[0] for k, v in query_params.items()}
+    
+    query_params.update({
         "accessToken": access_token,
         "platform": "WEB",
-    }
+    })
     
     # Sort params for signature
     sorted_param_string = "".join(
