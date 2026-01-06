@@ -1,5 +1,7 @@
 # rakutenai_py
 
+## The original project does not have a license, so if there are any issues with releasing this port, I will delete it.
+
 `rakutenai_py` is an asynchronous Python client library designed to interact with the Rakuten AI chat service. It provides a convenient way to create anonymous user sessions, manage chat threads, send various types of messages (text, images, files), and receive streaming AI responses.
 
 ## Features
