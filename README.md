@@ -1,8 +1,17 @@
 # rakutenai_py
 
-## The original project does not have a license, so if there are any issues with releasing this port, I will delete it.
-
 `rakutenai_py` is an asynchronous Python client library designed to interact with the Rakuten AI chat service. It provides a convenient way to create anonymous user sessions, manage chat threads, send various types of messages (text, images, files), and receive streaming AI responses.
+
+## Table of contents
+- [Credits](#Credits)
+- [Features](#Features)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Requirements](#Requirements)
+- [Development](#Development)
+
+## Credits
+This project is a **Python port** of [rakutenai](https://github.com/evex-dev/rakutenai/tree/main), originally developed in TypeScript. Special thanks to the original authors and all contributors for their great work.
 
 ## Features
 
@@ -46,7 +55,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### Advanced Usage (with Files and Threads)
+### Advanced-Usage (with Files and Threads)
 
 For more control, including uploading files or images, you can directly use the `User` and `Thread` classes.
 
@@ -140,6 +149,3 @@ To set up a development environment:
 1.  Clone the repository.
 2.  Install dependencies: `uv pip install -e .`
 3.  Run tests: `pytest`
-
-## Credits
-This project is a **Python port** of [rakutenai](https://github.com/evex-dev/rakutenai/tree/main), originally developed in TypeScript. Special thanks to the original authors and all contributors for their great work.
